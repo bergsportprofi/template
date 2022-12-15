@@ -69,7 +69,8 @@ export default {
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: [
         '@nuxtjs/sitemap',
-        '@nuxtjs/robots'
+        '@nuxtjs/robots',
+        'bootstrap-vue/nuxt'
     ],
 
     // Sitemap
@@ -141,11 +142,6 @@ export default {
                 }
             }
         }
-    },
-
-    // Build Configuration: https://go.nuxtjs.dev/config-build
-    build: {
-        publicPath: '/assets/'
     },
 
     googleFonts: {

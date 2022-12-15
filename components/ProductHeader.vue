@@ -6,13 +6,21 @@
         <div class="row g-5">
           <div class="col-lg-6 fadeInUp" style="min-height: 400px">
             <div class="position-relative h-100">
-              <nuxt-img
-                class="img-fluid position-absolute w-100 h-100"
-                :src="`${config.imageFolder}${product.localThumbs[0]}`"
-                :alt="product.name"
-                style="object-fit: cover; object-position: center bottom"
-                preset="productHeader"
-              />
+              <div>
+                <b-carousel
+                    id="carousel-1"
+                    controls
+                    indicators
+                    no-animation
+                    background="#fff"
+                    img-width="1024"
+                    img-height="480"
+                    @sliding-start="onSlideStart"
+                    @sliding-end="onSlideEnd"
+                >
+                    <b-carousel-slide v-for="item of product.localThumbs" :img-src="'/assets/images/images/' + item"></b-carousel-slide>
+                </b-carousel>
+              </div>
             </div>
           </div>
           <div class="col-lg-6 fadeInUp">
@@ -61,12 +69,20 @@ export default {
   data() {
     return {
       config,
+      slide: 0,
+      sliding: null
     };
   },
   methods: {
     decode: function decodeEntity(str) {
       return he.decode(str);
     },
+    onSlideStart(slide) {
+      this.sliding = true
+    },
+    onSlideEnd(slide) {
+      this.sliding = false
+    }
   },
 };
 </script>
