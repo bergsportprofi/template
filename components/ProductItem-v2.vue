@@ -55,7 +55,7 @@
           ({{ product.reviewCount }})
         </small>
       </div>
-      <div class="mb-4 h5" style="word-break: break-word;">
+      <div class="mb-4 h5" >
         <nuxt-link
             :to="`/produkt/${product.slug}/`"
             class="noLinkStyle"

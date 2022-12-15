@@ -5,20 +5,19 @@
         <div class="row g-5">
           <div class="col-lg-2 fadeInUp">
             <CategorySidebar />
+            <Filters :products="products" v-on:selected="handleFilterSelection"></Filters>
           </div>
           <div class="col-lg-10 fadeInUp">
             <div class="text-center fadeInUp">
-              <div
-                class="section-title bg-white text-center text-primary px-3 h6"
-              >
+              <div class="section-title bg-white text-center text-primary px-3 h6" >
                 Kategorie
               </div>
               <h1 class="mb-5 h2">
                 {{ categoryData.name }}
               </h1>
             </div>
-            <Products :products="products" />
-          </div>
+            <Products :products="products.slice((page - 1) * 12, page * 12)" :page="page"/>
+            <Pagination class="mt-5 d-flex justify-content-center text-center" :data="products" :per-page="12" :records="products.length" v-model="page"></Pagination>          </div>
         </div>
       </div>
     </div>
@@ -30,6 +29,7 @@
 <script>
 import config from "~/assets/data/config.json";
 import db from "~/utils/database.js";
+import Pagination from 'vue-pagination-2';
 
 export default {
   name: "categoryComponent",
@@ -65,6 +65,9 @@ export default {
       ],
     };
   },
+  components: {
+    Pagination
+  },
   data() {
     const slug = this.$route.params.slug;
     const categoryData = db.categories.getCategoryFromSlug(slug);
@@ -76,7 +79,13 @@ export default {
       products: filteredProducts,
       categoryData,
       seoData,
+      page: 1,
     };
   },
+  methods: {
+    handleFilterSelection(item) {
+      this.products = item;
+    }
+  }
 };
 </script>

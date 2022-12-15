@@ -482,3 +482,9 @@ input[type=range]::-webkit-slider-thumb {
 {
     filter: invert(100%);
 }
+
+
+.course-item .mb-4,
+.course-item .flex-fill a{
+    overflow-wrap: break-word; hyphens: auto;
+}
