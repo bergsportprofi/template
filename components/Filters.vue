@@ -6,7 +6,7 @@
       </h6>
       <div class="widget-content">
         <ul class="filter-order-by">
-          <li v-for="item in items" :key="item.id + Math.random()" :class="{ selected: item.isSelected }">
+          <li v-for="(item, index) in items" :key="index" :class="{ selected: item.isSelected }">
             <a @click="handleClick(item)">{{ item.name }}</a>
           </li>
         </ul>

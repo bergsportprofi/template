@@ -8,17 +8,21 @@
             <div class="position-relative h-100">
               <div>
                 <b-carousel
-                    id="carousel-1"
-                    controls
-                    indicators
-                    no-animation
-                    background="#fff"
-                    img-width="1024"
-                    img-height="480"
-                    @sliding-start="onSlideStart"
-                    @sliding-end="onSlideEnd"
+                  id="carousel-1"
+                  controls
+                  indicators
+                  no-animation
+                  background="#fff"
+                  img-width="1024"
+                  img-height="480"
+                  @sliding-start="onSlideStart"
+                  @sliding-end="onSlideEnd"
                 >
-                    <b-carousel-slide v-for="item of product.localThumbs" :img-src="'/assets/images/images/' + item"></b-carousel-slide>
+                  <b-carousel-slide
+                    v-for="(item, index) in product.localThumbs"
+                    :key="index"
+                    :img-src="'/assets/images/images/' + item"
+                  ></b-carousel-slide>
                 </b-carousel>
               </div>
             </div>
@@ -29,13 +33,8 @@
             </div>
             <h1 class="mb-4">{{ product.name }}</h1>
             <p class="mb-4">
-              Die {{ product.name }} ist eine
-              {{
-                product.categories[this.product.categories.length - 2].slice(
-                  0,
-                  -1
-                )
-              }}
+              Die {{ product.name }} ist ein Produkt aus der Kategorie
+              {{ decode(product.category) }}
               von der Marke {{ decode(product.brand) }}. Sie ist für einen Preis
               von {{ product.price }} EUR verfügbar und ist sofort lieferbar.
               Die {{ decode(product.name) }} hat eine Gesamtbewertung von
@@ -70,7 +69,7 @@ export default {
     return {
       config,
       slide: 0,
-      sliding: null
+      sliding: null,
     };
   },
   methods: {
@@ -78,11 +77,11 @@ export default {
       return he.decode(str);
     },
     onSlideStart(slide) {
-      this.sliding = true
+      this.sliding = true;
     },
     onSlideEnd(slide) {
-      this.sliding = false
-    }
+      this.sliding = false;
+    },
   },
 };
 </script>
