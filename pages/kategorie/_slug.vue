@@ -36,9 +36,7 @@ export default {
   head() {
     return {
       title:
-        this.seoData && this.seoData.seo && this.seoData.seo.title
-          ? this.seoData.seo.title
-          : config.categorySeo.defaultTitle
+        this.seoData?.seo?.title || config.categorySeo.defaultTitle
               .replaceAll("$PRODUKT", this.categoryData.name)
               .replaceAll("$HERSTELLER", this.categoryData.brand)
               .replaceAll("$KATEGORIE", this.categoryData.name),
@@ -47,9 +45,7 @@ export default {
           hid: "description",
           name: "description",
           content:
-            this.seoData && this.seoData.seo && this.seoData.seo.metaDescription
-              ? this.seoData.seo.metaDescription
-              : config.categorySeo.defaultMetaDescription
+            this.seoData?.seo?.metaDescription || config.categorySeo.defaultMetaDescription
                   .replaceAll("$PRODUKT", this.categoryData.name)
                   .replaceAll("$HERSTELLER", this.categoryData.brand)
                   .replaceAll("$KATEGORIE", this.categoryData.name),
@@ -58,9 +54,7 @@ export default {
           hid: "robots",
           name: "robots",
           content:
-            this.seoData && this.seoData.seo && this.seoData.seo.robots
-              ? this.seoData.seo.robots
-              : config.categorySeo.defaultRobots,
+            this.seoData?.seo?.robots || config.categorySeo.defaultRobots,
         },
       ],
     };
