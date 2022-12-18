@@ -73,6 +73,14 @@ export default {
         'bootstrap-vue/nuxt'
     ],
 
+    // Bootstrap Configuration
+    bootstrapVue: {
+        bootstrapCSS: false, 
+        bootstrapVueCSS: false, 
+        componentPlugins: ['Carousel'], // Components you want to use
+        directivePlugins: [] 
+    },
+
     // Sitemap
     sitemap: {
         hostname: config.hostname,
