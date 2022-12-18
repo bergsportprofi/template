@@ -75,9 +75,9 @@ export default {
 
     // Bootstrap Configuration
     bootstrapVue: {
-        bootstrapCSS: false, 
+        bootstrapCSS: true, 
         bootstrapVueCSS: false, 
-        componentPlugins: ['Carousel'], // Components you want to use
+        componentPlugins: ['Carousel'], // Components you want to use,
         directivePlugins: [] 
     },
 
